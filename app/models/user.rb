@@ -8,8 +8,18 @@ class User < ActiveRecord::Base
   has_many :searches
   
   def self.googlize
+    # require 'google/api_client'
+    # client = Google::APIClient.new(
+    #   :application_name => 'Example Ruby application',
+    #   :application_version => '1.0.0'
+    # )
+    # custom_search = client.discovered_api('custom_search')
     all.map { |user|
-      user.searches.create(query: 'Random', hits: 1234)
+      new_search = user.searches.create(query: RandomWord.adjs.next)
+      # custom_search.execute {
+      #   new_search.query
+      # }
+      
     }
   end
          
