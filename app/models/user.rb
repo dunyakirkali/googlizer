@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
          
+  has_many :searches
+  
+  def self.googlize
+    all.map { |user|
+      user.searches.create(query: 'Random', hits: 1234)
+    }
+  end
+         
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(:email => data["email"]).first

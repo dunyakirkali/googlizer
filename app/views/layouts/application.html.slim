@@ -11,7 +11,12 @@ html lang="en"
     = csrf_meta_tag
 
   body
-
+    .row
+      .columns.small-12.text-center
+        h1 Googlizer
+    .row
+      .columns.small-12.text-center
+        = render 'authentication'
     == yield
 
     = javascript_include_tag "application"

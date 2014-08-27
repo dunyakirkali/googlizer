@@ -1,0 +1,9 @@
+.row
+  .columns.small-12.text-center
+    button Activate
+.row
+  .columns.small-10
+    p Latest Searches
+    ul
+      - @searches.each do |search|
+        li= "#{search.query}-#{search.hits}"

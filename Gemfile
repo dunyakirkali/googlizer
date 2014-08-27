@@ -31,6 +31,7 @@ gem "foreman"
 gem "slim-rails"
 gem "devise"
 gem "foundation-rails"
+gem 'whenever', :require => false
 group :development, :test do
   gem "rspec-rails"
   gem "faker"
