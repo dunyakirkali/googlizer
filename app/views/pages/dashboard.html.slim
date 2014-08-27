@@ -1,9 +1,12 @@
 .row
   .columns.small-12.text-center
-    button Activate
+    - if current_user.active
+      = link_to 'deactivate', deactivate_user_path(current_user)
+    - else
+      = link_to 'activate', activate_user_path(current_user)
 .row
   .columns.small-10
     p Latest Searches
     ul
       - @searches.each do |search|
-        li= "#{search.query}-#{search.hits}"
+        li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank
