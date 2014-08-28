@@ -23,14 +23,13 @@ class User < ActiveRecord::Base
       Google::APIClient.logger.level = Logger::DEBUG
       new_search = user.searches.create(query: RandomWord.adjs.next)
       cx = '004719035725883568351'
-      api_key = 'AIzaSyAaKF9AG43TO6mAUnszb0BdDa9BVRCBb8M'
-      client = Google::APIClient.new(key: api_key, authorization: nil)
+      client = Google::APIClient.new(key: ENV['GOOGLE_API_KEY'], authorization: nil)
       search = client.discovered_api('customsearch')
       result = client.execute(
         api_method: search.cse.list,
         parameters: {
           q: new_search.query,
-          key: api_key,
+          key: ENV['GOOGLE_API_KEY'],
           cx: cx
         })
       pp result.data
