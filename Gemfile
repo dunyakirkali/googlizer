@@ -19,7 +19,6 @@ gem "devise"
 gem "foundation-rails"
 gem 'whenever', :require => false
 gem 'random-word'
-gem 'google-api-client'
 group :development, :test do
   gem "rspec-rails"
   gem "faker"
