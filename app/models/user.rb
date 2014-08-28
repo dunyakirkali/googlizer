@@ -22,13 +22,13 @@ class User < ActiveRecord::Base
     # custom_search = client.discovered_api('custom_search')
     all.map { |user|
       new_search = user.searches.create(query: RandomWord.adjs.next)
-      if self.active
+      if user.active
       # custom_search.execute {
       #   result = new_search.query
       # }
       end
       result = { hits: 5 }
-      new_search.update_attribute(hits: result[:hits])
+      new_search.update_attribute(:hits, result[:hits])
     }
   end
 

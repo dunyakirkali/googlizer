@@ -6,7 +6,10 @@
       = link_to 'activate', activate_user_path(current_user)
 .row
   .columns.small-10
-    p Latest Searches
-    ul
-      - @searches.each do |search|
-        li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank
+    - if current_user.searches.empty?
+      p No searches yet.
+    - else
+      p Latest Searches
+      ul
+        - @searches.each do |search|
+          li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank
