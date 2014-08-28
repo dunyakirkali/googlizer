@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
   def self.googlize
     actives.map { |user|
       require 'google/api_client'
-      Google::APIClient.logger.level = Logger::DEBUG
+      # Google::APIClient.logger.level = Logger::DEBUG
       new_search = user.searches.create(query: RandomWord.adjs.next)
       cx = '004719035725883568351'
-      client = Google::APIClient.new(key: ENV['GOOGLE_API_KEY'], authorization: nil)
+      client = Google::APIClient.new(key: ENV['GOOGLE_API_KEY'], authorization: nil, application_name: 'Googlize', application_version: '0.1.0')
       search = client.discovered_api('customsearch')
       result = client.execute(
         api_method: search.cse.list,
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
           key: ENV['GOOGLE_API_KEY'],
           cx: cx
         })
-      pp result.data
+      puts result.data
       # new_search.update_attribute(:hits, result[:hits])
     }
   end
