@@ -12,23 +12,28 @@ class User < ActiveRecord::Base
   def deactivate
     self.update_attribute(:active, false)
   end
+  
+  def self.actives
+    where(active: true)
+  end
 
   def self.googlize
-    # require 'google/api_client'
-    # client = Google::APIClient.new(
-    #   :application_name => 'Example Ruby application',
-    #   :application_version => '1.0.0'
-    # )
-    # custom_search = client.discovered_api('custom_search')
-    all.map { |user|
+    actives.map { |user|
+      require 'google/api_client'
       new_search = user.searches.create(query: RandomWord.adjs.next)
-      if user.active
-      # custom_search.execute {
-      #   result = new_search.query
-      # }
-      end
-      result = { hits: 5 }
-      new_search.update_attribute(:hits, result[:hits])
+      cx = '004719035725883568351'
+      api_key = 'AIzaSyAaKF9AG43TO6mAUnszb0BdDa9BVRCBb8M'
+      client = Google::APIClient.new(key: api_key, authorization: nil)
+      search = client.discovered_api('customsearch')
+      result = client.execute(
+        api_method: search.cse.list,
+        parameters: {
+          q: new_search.query,
+          key: api_key,
+          cx: cx
+        })
+      pp result.data
+      # new_search.update_attribute(:hits, result[:hits])
     }
   end
 
