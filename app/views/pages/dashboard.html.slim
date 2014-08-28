@@ -1,15 +1,12 @@
 .row
-  .columns.small-12.text-center
-    - if current_user.active
-      = link_to 'deactivate', deactivate_user_path(current_user)
-    - else
-      = link_to 'activate', activate_user_path(current_user)
-.row
-  .columns.small-10
+  .columns.small-4.text-center.small-centered
     - if current_user.searches.empty?
       p No searches yet.
     - else
-      p Latest Searches
-      ul
-        - @searches.each do |search|
-          li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank
+      dl.accordion data-accordion="myAccordionGroup"
+        dd.accordion-navigation
+          a href="#panel1c" latest searches
+          #panel1c.content
+            ul
+              - @searches.each do |search|
+                li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank

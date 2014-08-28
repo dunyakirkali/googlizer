@@ -1,0 +1,4 @@
+- if current_user.active
+  = link_to '#', deactivate_user_path(current_user)
+- else
+  = link_to '#', activate_user_path(current_user)
