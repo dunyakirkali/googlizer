@@ -19,6 +19,7 @@ gem "devise"
 gem "foundation-rails"
 gem 'whenever', :require => false
 gem 'random-word'
+gem 'newrelic_rpm'
 group :development, :test do
   gem "rspec-rails"
   gem "faker"
