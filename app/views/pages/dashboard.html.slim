@@ -1,5 +1,5 @@
 .row
-  .columns.small-4.text-center.small-centered
+  .columns.small-10.text-center.small-centered
     - if current_user.searches.empty?
       p No searches yet.
     - else
@@ -7,6 +7,15 @@
         dd.accordion-navigation
           a href="#panel1c" latest searches
           #panel1c.content
-            ul
-              - @searches.each do |search|
-                li= link_to "#{search.query}-#{search.hits}", "https://www.google.nl/search?q=#{search.query}", target: :blank
+            table
+              thead
+                tr
+                  th Query
+                  th Hits
+                  th On
+              tbody
+                - @searches.each do |search|
+                  tr
+                    td= link_to "#{search.query}", "https://www.google.nl/search?q=#{search.query}", target: :blank
+                    td= search.hits
+                    td= search.created_at
