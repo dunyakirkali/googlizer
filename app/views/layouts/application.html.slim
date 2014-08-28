@@ -16,7 +16,7 @@ html lang="en"
         h1.title
           | Googlizer
           - if user_signed_in?
-            span.minor-title.label.round class="#{((current_user.active) ? 'success' : 'alert') }"= render 'controls'
+            = render 'controls'
     .row
       .columns.small-12.text-center
         = render 'authentication'

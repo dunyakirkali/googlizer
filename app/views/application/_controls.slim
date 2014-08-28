@@ -1,4 +1,6 @@
 - if current_user.active
-  = link_to '#', deactivate_user_path(current_user)
+  = link_to deactivate_user_path(current_user) do
+    span.minor-title.label.round.alert #
 - else
-  = link_to '#', activate_user_path(current_user)
+  = link_to activate_user_path(current_user) do
+    span.minor-title.label.round.success #
