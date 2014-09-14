@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     actives.map { |user|
       require 'google/api_client'
       new_search = user.searches.create(query: RandomWord.adjs.next)
-      cx = '004719035725883568351'
+      cx = '004719035725883568351:yi8oxhuk_iu'
       client = Google::APIClient.new(key: ENV['GOOGLE_API_KEY'], authorization: nil, application_name: 'Googlize', application_version: '0.1.0')
       search = client.discovered_api('customsearch')
       result = client.execute(
@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
         parameters: {
           q: new_search.query
         })
-      pp result
-      # new_search.update_attribute(:hits, result[:hits])
+      pp result.data.search_information.total_results
+      new_search.update_attribute(:hits, result.data.search_information.total_results)
     }
   end
 
