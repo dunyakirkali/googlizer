@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
       result = client.execute(
         api_method: search.cse.list,
         parameters: {
-          q: new_search.query
+          q: new_search.query,
+          cx: cx
         })
       pp result.data
       pp result.data[:search_information][:total_results]
