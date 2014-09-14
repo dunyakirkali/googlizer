@@ -1,21 +1,21 @@
-.row
-  .columns.small-10.text-center.small-centered
-    - if current_user.searches.empty?
-      p No searches yet.
-    - else
-      dl.accordion data-accordion="myAccordionGroup"
-        dd.accordion-navigation
-          a href="#panel1c" .
-          #panel1c.content
-            table
-              thead
-                tr
-                  th Query
-                  th Hits
-                  th On
-              tbody
-                - @searches.each do |search|
-                  tr
-                    td= link_to "#{search.query}", "https://www.google.nl/search?q=#{search.query}", target: :blank
-                    td= search.hits
-                    td= search.created_at
+- if current_user.searches.empty?
+  p No searches yet.
+- else
+  dl.accordion data-accordion="myAccordionGroup"
+    dd.accordion-navigation
+      a href="#panel1c" searches
+      #panel1c.content
+        table.text-center
+          tbody
+            - @searches.each do |search|
+              tr
+                / = link_to "https://www.google.nl/search?q=#{search.query}", target: :blank do
+                td= "searched "
+                td
+                  span.label= search.query
+                td= " on "
+                td
+                  span.label= search.created_at.to_formatted_s(:short)
+                td= " got "
+                td
+                  span.label.success= (search.hits) ? search.hits : 0

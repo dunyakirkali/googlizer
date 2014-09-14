@@ -1,0 +1,4 @@
+- flash.each do |type, value|
+  .alert-box data-alert=true class="#{type.to_s}"
+    = value 
+    a.close href="#" &times;

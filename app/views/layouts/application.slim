@@ -18,8 +18,13 @@ html lang="en"
           - if user_signed_in?
             = render 'controls'
     .row
-      .columns.small-12.text-center
+      .columns.text-center.small-12.small-centered.medium-8
+        = render 'notices'
+    .row
+      .columns.text-center.small-12.small-centered.medium-8
         = render 'authentication'
-    == yield
+    .row
+      .columns.text-center.small-12.small-centered.medium-8
+        == yield
 
     = javascript_include_tag "application"

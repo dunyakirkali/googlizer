@@ -330,7 +330,7 @@ $accordion-navigation-font-color: white;
 // $accordion-navigation-font-family: $body-font-family;
 
 // $accordion-content-padding: $column-gutter/2;
-$accordion-content-active-bg-color: transparent;
+$accordion-content-active-bg-color: $color-five;
 
 // 02. Alert Boxes
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1272,12 +1272,12 @@ $accordion-content-active-bg-color: transparent;
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: $white;
-// $table-even-row-bg: $snow  ;
+$table-bg: transparent;
+$table-even-row-bg: transparent;
 
 // These control the table cell border style
 // $table-border-style: solid;
-// $table-border-size: 1px;
+$table-border-size: 0px;
 // $table-border-color: $gainsboro;
 
 // These control the table head styles
