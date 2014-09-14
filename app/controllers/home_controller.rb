@@ -5,6 +5,6 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    @searches = current_user.searches.limit(5)
+    @searches = current_user.searches.order(created_at: :desc).limit(5)
   end
 end

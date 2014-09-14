@@ -34,7 +34,6 @@ class User < ActiveRecord::Base
           :'cx' => cx
         }
       )
-      pp result.data['searchInformation']['totalResults']
       new_search.update_attribute(:hits, result.data['searchInformation']['totalResults'])
     }
   end
