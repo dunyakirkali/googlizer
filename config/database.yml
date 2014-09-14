@@ -6,6 +6,7 @@ development:
   pool: 5
 
 test:
+  host: localhost
   adapter: postgresql
   encoding: unicode
   database: googlizer_test

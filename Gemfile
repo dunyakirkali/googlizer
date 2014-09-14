@@ -20,8 +20,13 @@ gem "foundation-rails"
 gem 'whenever', :require => false
 gem 'random-word'
 gem 'newrelic_rpm'
+group :development do
+  gem 'thin'
+end
 group :development, :test do
+  gem 'spring-commands-rspec'
   gem "rspec-rails"
+  gem 'guard-rspec'
   gem "faker"
   gem "factory_girl_rails"
   gem "capybara"

@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :searches
+  has_many :searches, dependent: :destroy
 
+  # Instance methods
   def activate
     self.update_attribute(:active, true)
   end
@@ -12,7 +13,8 @@ class User < ActiveRecord::Base
   def deactivate
     self.update_attribute(:active, false)
   end
-  
+
+  # Class methods
   def self.actives
     where(active: true)
   end
@@ -28,9 +30,7 @@ class User < ActiveRecord::Base
       result = client.execute(
         api_method: search.cse.list,
         parameters: {
-          q: new_search.query,
-          # key: ENV['GOOGLE_API_KEY'],
-          cx: cx
+          q: new_search.query
         })
       pp result.data
       # new_search.update_attribute(:hits, result[:hits])
