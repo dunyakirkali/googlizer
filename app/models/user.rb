@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   def self.googlize
     actives.map { |user|
       require 'google/api_client'
-      # Google::APIClient.logger.level = Logger::DEBUG
       new_search = user.searches.create(query: RandomWord.adjs.next)
       cx = '004719035725883568351'
       client = Google::APIClient.new(key: ENV['GOOGLE_API_KEY'], authorization: nil, application_name: 'Googlize', application_version: '0.1.0')
