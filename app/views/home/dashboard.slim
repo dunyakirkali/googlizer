@@ -9,10 +9,9 @@ dl.accordion data-accordion="myAccordionGroup"
           - @searches.each do |search|
             li
               = link_to "https://www.google.nl/search?q=#{search.query}", target: :blank do
-                = "searched "
-                span.label.warning= search.query
                 = " on "
                 span.label= search.created_at.to_formatted_s(:short)
+                span.label.warning= search.query
                 = " got "
                 span.label.success= (search.hits) ? search.hits : 0
                 = " results"
