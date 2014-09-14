@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
         parameters: {
           q: new_search.query
         })
-      pp result.data
+      pp result
       # new_search.update_attribute(:hits, result[:hits])
     }
   end
