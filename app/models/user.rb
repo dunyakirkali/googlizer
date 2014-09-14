@@ -31,11 +31,12 @@ class User < ActiveRecord::Base
         api_method: search.cse.list,
         parameters: {
           q: new_search.query,
-          cx: cx
+          cx: cx,
+          key: ENV['GOOGLE_API_KEY']
         })
       pp result.data
-      pp result.data[:search_information][:total_results]
-      new_search.update_attribute(:hits, result.data[:search_information][:total_results])
+      # pp result.data[:search_information][:total_results]
+      # new_search.update_attribute(:hits, result.data[:search_information][:total_results])
     }
   end
 
