@@ -1,0 +1,7 @@
+#!/bin/bash
+set -x
+set -e
+
+git push git@heroku.com:googlizer-staging.git develop:master
+heroku run rake db:migrate --app googlizer-staging
+heroku run rake db:seed --app googlizer-staging

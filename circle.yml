@@ -1,0 +1,15 @@
+test:
+  override:
+    - bundle exec rake spec
+    # - bundle exec rake style
+    # - bundle exec rake security
+    # - bundle exec rake quality
+deployment:
+  staging:
+    branch: develop
+    commands:
+      - ./script/deploy/staging
+  production:
+    branch: master
+    commands:
+      - ./script/deploy/production
